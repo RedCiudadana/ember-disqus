@@ -55,6 +55,9 @@ export default Ember.Component.extend({
       window.DISQUS.reset({
         reload: true,
         config: function () {
+          // Hotfix for https://github.com/sir-dunxalot/ember-disqus/issues/10
+          window.document.getElementById('disqus_thread').innerHTML = '';
+
           this.page.identifier = identifier;
 
           /* Set a modified version of the URL on the window */
