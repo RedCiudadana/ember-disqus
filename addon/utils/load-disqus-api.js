@@ -23,6 +23,13 @@ export default function loadFilepickerApi(context, fileName) {
   filePath = `//${shortname}.disqus.com/${fileName}.js`;
   cachedValue = DisqusCache[filePath];
 
+  /* Set a modified version of the URL on the window */
+  if (!window.disqus_config) {
+    window.disqus_config = function() {
+      this.page.url = window.location.href.replace(/#\//, "");
+    };
+  }
+
   /* Set the shortname property on the window */
 
   if (!window.disqus_shortname) {

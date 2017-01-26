@@ -56,7 +56,9 @@ export default Ember.Component.extend({
         reload: true,
         config: function () {
           this.page.identifier = identifier;
-          this.page.url = window.location.href;
+
+          /* Set a modified version of the URL on the window */
+          this.page.url = window.location.href.replace(/#\//, "");
 
           if (title) {
             this.page.title = title;
